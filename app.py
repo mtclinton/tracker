@@ -1,28 +1,18 @@
-from itertools import groupby
-import sqlite3
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, g
+import sqlite3 as sql
+from flask_restful import Api, Resource, reqparse
+from flask_cors import CORS #comment this on deployment
 
 
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
+from handler import ApiHandler
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sfsdfskl9re08f098fv09s8v98oOOSW#ve8gf4'
+app.config.from_pyfile('config.py')
+CORS(app) #comment this on deployment
 
+api = Api(app)
 
-@app.route('/')
-def index():
-    conn = get_db_connection()
-    todos = conn.execute('SELECT i.content, l.title FROM items i JOIN lists l \
-                          ON i.list_id = l.id ORDER BY l.title;').fetchall()
+api.add_resource(ApiHandler.HomeHandler, "/")
 
-    lists = {}
-
-    for k, g in groupby(todos, key=lambda t: t['title']):
-        lists[k] = list(g)
-
-    conn.close()
-    return render_template('index.html', lists=lists)
+if __name__ == '__main__':
+    app.run(debug=True)
