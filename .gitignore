@@ -1,5 +1,6 @@
 config.py
-
+frontend/public/css/all.css
+frontend/public/webfonts
 templates
 .idea
 .idea/

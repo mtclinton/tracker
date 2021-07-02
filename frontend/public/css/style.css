@@ -67,6 +67,22 @@ button {
   display: none;
 }
 
-.fad {
+.tile .fad {
   font-size: 60px;
 }
+
+/*.fa-user-hard-hat{*/
+/*  --fa-secondary-opacity: .5; --fa-primary-color: orange; --fa-secondary-color: #FAE8D4;"*/
+/*}*/
+
+/*.fa-dumbbell{*/
+/*  --fa-secondary-opacity: .5; --fa-primary-color: #221216; --fa-secondary-color: darkgray;"*/
+/*}*/
+
+/*.fa-apple-alt{*/
+/*  --fa-secondary-opacity: .5; --fa-primary-color: #F685A9; --fa-secondary-color: #C3F23F;"*/
+/*}*/
+
+/*.fa-flask-poison{*/
+/*  --fa-secondary-opacity: .5; --fa-primary-color: #7950f2; --fa-secondary-color: #b197fc;"*/
+/*}*/
