@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/tracker/sidebar";
 import Nav from "../components/nav";
-import HomeNav from "../components/work_nav";
-import Day from "../components/day";
-import TopWorkNav from "../components/top_work_nav";
+import HomeNav from "../components/tracker/work_nav";
+import Day from "../components/tracker/day";
+import TopWorkNav from "../components/tracker/top_work_nav";
 
 
 function Food(props) {
@@ -20,7 +20,7 @@ function Food(props) {
                     </div>
 
                     <div className="column is-9">
-                        <TopWorkNav />
+                        <TopWorkNav match={match}/>
                         <Day />
                         <HomeNav />
                         <div className="columns">

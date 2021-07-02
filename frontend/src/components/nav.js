@@ -16,25 +16,25 @@ function Nav(props) {
                     {/*</div>*/}
                     <div id="navMenu" className="navbar-menu">
                         <div className="navbar-start">
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/">
                                 Home
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/hackernews">
                                 HackerNews
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/4chan">
                                 4Chan
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/music">
                                 Music
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/books">
                                 Books
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/rss">
                                 RSS
                             </a>
-                            <a className="navbar-item" href="admin.html">
+                            <a className="navbar-item" href="/finances">
                                 Finances
                             </a>
                         </div>

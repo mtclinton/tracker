@@ -14,6 +14,13 @@ import Exercise from "./pages/Exercise";
 import Vices from "./pages/Vices";
 import Food from "./pages/Food";
 import Work from "./pages/Work";
+import Hackernews from "./pages/Hackernews";
+import AskHackernews from "./pages/AskHackernews";
+import ShowHackernews from "./pages/ShowHackernews";
+import JobsHackernews from "./pages/JobsHackernews";
+import NewHackernews from "./pages/NewHackernews";
+import BestHackernews from "./pages/BestHackernews";
+
 
 function NotFound() {
     return (
@@ -28,6 +35,30 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
         <Switch>
+            <Route
+                path="/hackernews/ask/:page(\d+)?"
+                component={AskHackernews}
+            />
+            <Route
+                path="/hackernews/show/:page(\d+)?"
+                component={ShowHackernews}
+            />
+            <Route
+                path="/hackernews/jobs/:page(\d+)?"
+                component={JobsHackernews}
+            />
+            <Route
+                path="/hackernews/new/:page(\d+)?"
+                component={NewHackernews}
+            />
+            <Route
+                path="/hackernews/best/:page(\d+)?"
+                component={BestHackernews}
+            />
+            <Route
+                path="/hackernews/:page(\d+)?"
+                component={Hackernews}
+            />
             <Route
                 path="/vices"
                 component={Vices}

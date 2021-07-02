@@ -72,42 +72,42 @@ function Sidebar(props) {
                 Work
             </p>
             <ul className="menu-list">
-                <li><a className={`${active['work-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a className={`${active['work-report'] ? "is-active" : ""}`}>Reports</a></li>
-                <li><a className={`${active['work-notes'] ? "is-active" : ""}`}>Notes</a></li>
+                <li><a href={"/work"}  className={`${active['work-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
+                <li><a href={"/work"}  className={`${active['work-report'] ? "is-active" : ""}`}>Reports</a></li>
+                <li><a href={"/work"}  className={`${active['work-notes'] ? "is-active" : ""}`}>Notes</a></li>
             </ul>
             <p className="menu-label">
                 Exercise
             </p>
             <ul className="menu-list">
-                <li><a className={`${active['exercise-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a className={`${active['exercise-report'] ? "is-active" : ""}`}>Reports</a></li>
+                <li><a href={"/exercise"}  className={`${active['exercise-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
+                <li><a href={"/exercise/report"}  className={`${active['exercise-report'] ? "is-active" : ""}`}>Reports</a></li>
             </ul>
             <p className="menu-label">
                 Nutrition
             </p>
             <ul className="menu-list">
-                <li><a className={`${active['food-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a className={`${active['food-report'] ? "is-active" : ""}`}>Reports</a></li>
+                <li><a href={"/food"}  className={`${active['food-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
+                <li><a href={"/food/report"}  className={`${active['food-report'] ? "is-active" : ""}`}>Reports</a></li>
             </ul>
             <p className="menu-label">
                 Vices
             </p>
             <ul className="menu-list">
-                <li><a className={`${active['vices-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a className={`${active['vices-report'] ? "is-active" : ""}`}>Reports</a></li>
+                <li><a href={"/vices"}  className={`${active['vices-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
+                <li><a href={"/vices/report"}  className={`${active['vices-report'] ? "is-active" : ""}`}>Reports</a></li>
             </ul>
             <p className="menu-label">
                 Editor
             </p>
             <ul className="menu-list">
                 <li>
-                    <a>Add Data</a>
+                    <a href={"/add/data"} >Add Data</a>
                     <ul>
-                        <li><a>Add Work</a></li>
-                        <li><a>Add Exercise</a></li>
-                        <li><a>Add Food</a></li>
-                        <li><a>Add Vice</a></li>
+                        <li><a href={"/add/work"} >Add Work</a></li>
+                        <li><a href={"/add/exercise"} >Add Exercise</a></li>
+                        <li><a href={"/add/food"} >Add Food</a></li>
+                        <li><a href={"/add/vice"} >Add Vice</a></li>
                     </ul>
                 </li>
             </ul>

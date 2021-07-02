@@ -71,6 +71,11 @@ button {
   font-size: 60px;
 }
 
+.breadcrumb li+li::before {
+    color: #b5b5b5;
+    content: "\0007C";
+}
+
 /*.fa-user-hard-hat{*/
 /*  --fa-secondary-opacity: .5; --fa-primary-color: orange; --fa-secondary-color: #FAE8D4;"*/
 /*}*/
