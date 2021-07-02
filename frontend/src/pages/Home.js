@@ -173,26 +173,26 @@ function Home(props) {
                             <div className="tile is-ancestor has-text-centered">
                                 <div className="tile is-parent">
                                     <article className="tile is-child box">
-                                        <p className="title">439k</p>
-                                        <p className="subtitle">Users</p>
+                                        <i className="fad fa-user-hard-hat"></i>
+                                        {/*<p className="subtitle">Work</p>*/}
                                     </article>
                                 </div>
                                 <div className="tile is-parent">
                                     <article className="tile is-child box">
-                                        <p className="title">59k</p>
-                                        <p className="subtitle">Products</p>
+                                        <i className="fad fa-dumbbell"></i>
+                                        {/*<p className="subtitle">Products</p>*/}
                                     </article>
                                 </div>
                                 <div className="tile is-parent">
                                     <article className="tile is-child box">
-                                        <p className="title">3.4k</p>
-                                        <p className="subtitle">Open Orders</p>
+                                        <i className="fad fa-apple-alt"></i>
+                                        {/*<p className="subtitle">Open Orders</p>*/}
                                     </article>
                                 </div>
                                 <div className="tile is-parent">
                                     <article className="tile is-child box">
-                                        <p className="title">19</p>
-                                        <p className="subtitle">Exceptions</p>
+                                        <i className="fad fa-flask-poison"></i>
+                                        {/*<p className="subtitle">Exceptions</p>*/}
                                     </article>
                                 </div>
                             </div>

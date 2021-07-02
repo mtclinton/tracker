@@ -36,6 +36,19 @@ module.exports = {
                 use: ['@svgr/webpack'],
                 exclude: /node_modules/,
             },
+            {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
+
         ]
     },
     output: {
@@ -64,6 +77,9 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: "public/css", to: "css" },
+                { from: "public/webfonts", to: "webfonts" },
+
+
             ],
 
         }),

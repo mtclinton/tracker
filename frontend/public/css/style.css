@@ -66,3 +66,7 @@ button {
 #pauseButton {
   display: none;
 }
+
+.fad {
+  font-size: 60px;
+}
