@@ -74,6 +74,7 @@ function showButton(buttonKey) {
 
 
 function Home(props) {
+    const { match } = props;
 
     return (
         <div>
@@ -81,7 +82,7 @@ function Home(props) {
             <div class="container">
                 <div class="columns">
                     <div className="column is-3 ">
-                        <Sidebar />
+                        <Sidebar match={match}/>
 
                     </div>
 

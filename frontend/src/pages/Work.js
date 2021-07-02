@@ -75,13 +75,15 @@ function showButton(buttonKey) {
 
 function Work(props) {
 
+    const { match } = props;
+
     return (
         <div>
             <Nav />
             <div class="container">
                 <div class="columns">
                     <div className="column is-3 ">
-                        <Sidebar />
+                        <Sidebar match={match}/>
                     </div>
 
                     <div className="column is-9">
