@@ -10,6 +10,10 @@ import {
 import history from './history';
 
 import Home from "./pages/Home";
+import Exercise from "./pages/Exercise";
+import Vices from "./pages/Vices";
+import Food from "./pages/Food";
+import Work from "./pages/Work";
 
 function NotFound() {
     return (
@@ -24,18 +28,22 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
         <Switch>
-            {/*<Route*/}
-            {/*    path="/addfood"*/}
-            {/*    component={Home}*/}
-            {/*/>*/}
-            {/*<Route*/}
-            {/*    path="/addexercise"*/}
-            {/*    component={Home}*/}
-            {/*/>*/}
-            {/*<Route*/}
-            {/*    path="/addwork"*/}
-            {/*    component={Home}*/}
-            {/*/>*/}
+            <Route
+                path="/vices"
+                component={Vices}
+            />
+            <Route
+                path="/exercise"
+                component={Exercise}
+            />
+            <Route
+                path="/food"
+                component={Food}
+            />
+            <Route
+                path="/work"
+                component={Work}
+            />
             <Route
                 path="/"
                 component={Home}

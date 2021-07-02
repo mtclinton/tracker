@@ -73,7 +73,7 @@ function showButton(buttonKey) {
 }
 
 
-function Home(props) {
+function Work(props) {
 
     return (
         <div>
@@ -82,7 +82,6 @@ function Home(props) {
                 <div class="columns">
                     <div className="column is-3 ">
                         <Sidebar />
-
                     </div>
 
                     <div className="column is-9">
@@ -244,4 +243,4 @@ function Home(props) {
     );
 }
 
-export default Home;
+export default Work;
