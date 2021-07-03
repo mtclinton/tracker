@@ -3,113 +3,66 @@ import React, { useEffect, useState } from 'react';
 function Sidebar(props) {
 
     const { match } = props;
-    var active = {
-        'work-dashboard': false,
-        'work-report': false,
-        'work-notes': false,
-        'exercise-dashboard': false,
-        'exercise-report': false,
-        'nutrition-dashboard': false,
-        'nutrition-report': false,
-        'vices-dashboard': false,
-        'vices-report': false,
-        'add-work': false,
-        'add-exercise': false,
-        'add-food': false,
-        'add-vice': false,
+        var active = {
+        'ask': false,
+        'show': false,
+        'new': false,
+        'jobs': false,
+        'best': false,
+        'front': false,
+        'starred': false,
+        'deleted': false,
+
     }
 
-    switch (match.path){
-        case '/':
-            active['work-dashboard'] = true
+    switch (match.url){
+        case '/hackernews/ask':
+            active['ask'] = true
             break
-        case '/work':
-            active['work-dashboard'] = true
+        case '/hackernews/show':
+            active['show'] = true
             break
-        case '/work/report':
-            active['work-dashboard'] = true
+        case '/hackernews/new':
+            active['new'] = true
             break
-        case '/work/notes':
-            active['work-dashboard'] = true
+        case '/hackernews/jobs':
+            active['jobs'] = true
             break
-        case '/exercise':
-            active['exercise-dashboard'] = true
+        case '/hackernews/best':
+            active['best'] = true
             break
-        case '/exercise/report':
-            active['exercise-dashboard'] = true
+        case '/hackernews/starred':
+            active['starred'] = true
             break
-        case '/food':
-            active['food-dashboard'] = true
+        case '/hackernews/deleted':
+            active['deleted'] = true
             break
-        case '/food/report':
-            active['food-dashboard'] = true
-            break
-        case '/vices':
-            active['vices-dashboard'] = true
-            break
-        case '/vices/report':
-            active['vices-report'] = true
-            break
-        case '/add/work':
-            active['add-work'] = true
-            break
-        case '/add/food':
-            active['add-food'] = true
-            break
-        case '/add/exercise':
-            active['add-exercise'] = true
-            break
-        case '/add/vice':
-            active['add-vice'] = true
+        case '/hackernews':
+            active['front'] = true
             break
         default:
-            console.log('url error')
+            break
         }
 
     return (
-        <aside className="menu is-hidden-mobile">
+        <aside className="menu is-hidden-mobile" style={{marginTop : '50px'}}>
             <p className="menu-label">
-                Work
+                Types
             </p>
             <ul className="menu-list">
-                <li><a href={"/work"}  className={`${active['work-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a href={"/work"}  className={`${active['work-report'] ? "is-active" : ""}`}>Reports</a></li>
-                <li><a href={"/work"}  className={`${active['work-notes'] ? "is-active" : ""}`}>Notes</a></li>
+                <li><a href={"/hackernews"}  className={`${active['front'] ? "is-active" : ""}`}>Front</a></li>
+                <li><a href={"/hackernews/new"}  className={`${active['new'] ? "is-active" : ""}`}>New</a></li>
+                <li><a href={"/hackernews/best"}  className={`${active['best'] ? "is-active" : ""}`}>Best</a></li>
+                <li><a href={"/hackernews/show"}  className={`${active['show'] ? "is-active" : ""}`}>Show</a></li>
+                <li><a href={"/hackernews/jobs"}  className={`${active['jobs'] ? "is-active" : ""}`}>Jobs</a></li>
+                <li><a href={"/hackernews/ask"}  className={`${active['ask'] ? "is-active" : ""}`}>Ask</a></li>
             </ul>
             <p className="menu-label">
-                Exercise
+                Saved
             </p>
             <ul className="menu-list">
-                <li><a href={"/exercise"}  className={`${active['exercise-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a href={"/exercise/report"}  className={`${active['exercise-report'] ? "is-active" : ""}`}>Reports</a></li>
-            </ul>
-            <p className="menu-label">
-                Nutrition
-            </p>
-            <ul className="menu-list">
-                <li><a href={"/food"}  className={`${active['food-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a href={"/food/report"}  className={`${active['food-report'] ? "is-active" : ""}`}>Reports</a></li>
-            </ul>
-            <p className="menu-label">
-                Vices
-            </p>
-            <ul className="menu-list">
-                <li><a href={"/vices"}  className={`${active['vices-dashboard'] ? "is-active" : ""}`}>Dashboard</a></li>
-                <li><a href={"/vices/report"}  className={`${active['vices-report'] ? "is-active" : ""}`}>Reports</a></li>
-            </ul>
-            <p className="menu-label">
-                Editor
-            </p>
-            <ul className="menu-list">
-                <li>
-                    <a href={"/add/data"} >Add Data</a>
-                    <ul>
-                        <li><a href={"/add/work"} >Add Work</a></li>
-                        <li><a href={"/add/exercise"} >Add Exercise</a></li>
-                        <li><a href={"/add/food"} >Add Food</a></li>
-                        <li><a href={"/add/vice"} >Add Vice</a></li>
-                    </ul>
-                </li>
+                <li><a href={"/hackernews/starred"}  className={`${active['starred'] ? "is-active" : ""}`}>Starred</a></li>
+                <li><a href={"/hackernews/deleted"}  className={`${active['deleted'] ? "is-active" : ""}`}>Deleted</a></li>
             </ul>
         </aside>
     )

@@ -1,26 +1,26 @@
 import React from 'react';
 
 function TopWorkNav(props) {
-
     const { match } = props;
+    console.log(match.url)
     var active = {
         'ask': false,
         'show': false,
-        'hew': false,
+        'new': false,
         'jobs': false,
         'best': false,
         'front': false,
     }
 
-    switch (match.path){
+    switch (match.url){
         case '/hackernews/ask':
             active['ask'] = true
             break
         case '/hackernews/show':
             active['show'] = true
             break
-        case '/hackernews/hew':
-            active['hew'] = true
+        case '/hackernews/new':
+            active['new'] = true
             break
         case '/hackernews/jobs':
             active['jobs'] = true
@@ -36,7 +36,7 @@ function TopWorkNav(props) {
         }
 
     return (
-        <nav className="breadcrumb" aria-label="breadcrumbs">
+        <nav className="breadcrumb" aria-label="breadcrumbs" style={{marginTop : '20px'}}>
             <ul>
                 <li className={`${active['front'] ? "is-active" : ""}`}><a href="/hackernews">Front</a></li>
                 <li className={`${active['new'] ? "is-active" : ""}`}><a href="/hackernews/new">New</a></li>
