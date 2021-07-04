@@ -52,3 +52,56 @@ CREATE TABLE sleep (
     wake_up TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     bed_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE hn_item (
+        id INTEGER PRIMARY KEY,
+        deleted INTEGER,
+        type TEXT,
+        author TEXT,
+        time INTEGER,
+        text TEXT,
+        dead INTEGER,
+        parent TEXT,
+        poll TEXT,
+        kids TEXT,
+        url TEXT,
+        score INTEGER,
+        title TEXT,
+        parts TEXT,
+        descendants INTEGER,
+
+        front_rank   INTEGER,
+        new_rank   INTEGER,
+        best_rank   INTEGER,
+        ask_rank   INTEGER,
+        show_rank   INTEGER,
+        job_rank   INTEGER,
+
+        starred INTEGER
+
+);
+
+CREATE TABLE hn_delete (
+        id INTEGER PRIMARY KEY,
+        deleted INTEGER,
+        type TEXT,
+        author TEXT,
+        time INTEGER,
+        text TEXT,
+        dead INTEGER,
+        parent TEXT,
+        poll TEXT,
+        kids TEXT,
+        url TEXT,
+        score INTEGER,
+        title TEXT,
+        parts TEXT,
+        descendants INTEGER,
+
+        front_rank   INTEGER,
+        new_rank   INTEGER,
+        best_rank   INTEGER,
+        ask_rank   INTEGER,
+        show_rank   INTEGER,
+        job_rank   INTEGER
+)

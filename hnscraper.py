@@ -1,4 +1,5 @@
 import requests
+from dataclasses import dataclass
 
 class Item(object):
 
@@ -119,6 +120,7 @@ class NewsClient(object):
             stories as list of `Item`
         """
         top_story_ids = self.get_top_story_ids(limit=fetchMax)
+        print(top_story_ids)
         top_story_items = []
         for top_story_id in top_story_ids:
             top_story_items.append(self.get_item_by_id(top_story_id))
@@ -193,3 +195,14 @@ class NewsClient(object):
                 kids_item_list.append(kids_item)
             item.kids = kids_item_list
         return item
+
+
+def main():
+    print('hackernews-client v0.1\n\nExamples:\n\n')
+
+
+
+    print(items)
+
+if __name__ == "__main__":
+    main()
