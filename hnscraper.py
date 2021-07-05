@@ -20,6 +20,15 @@ class Item(object):
         self.parts = response_data.get('parts')
         self.descendants = response_data.get('descendants')
 
+        self.front_rank = -1
+        self.new_rank = -1
+        self.best_rank = -1
+        self.ask_rank = -1
+        self.show_rank = -1
+        self.jobs_rank = -1
+
+        self.starred = 0
+
 
 class User(object):
 
@@ -202,7 +211,6 @@ def main():
 
 
 
-    print(items)
 
 if __name__ == "__main__":
     main()
