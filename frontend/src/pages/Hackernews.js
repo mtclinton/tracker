@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from "../components/hackernews/sidebar";
 import Nav from "../components/nav";
 import TopWorkNav from "../components/hackernews/top_work_nav";
+import Item from "../components/hackernews/Item";
 
 const BASE_API_URL = 'http://localhost:5000';
 
@@ -54,15 +55,19 @@ function Hackernews(props) {
 
                     <div className="column is-9">
                         <TopWorkNav match={match}/>
-                        <div className="columns">
+                        <div className=''>
                             {
                                 loading && <div>Loading</div>
                             }
                             {
                                 !loading
-                                && stories.map((story) => (
-                                    <div>{story[0]}</div>
-                                    ))
+                                && stories.map((item, i) => (
+                                        <Item
+                                          key={item[0]}
+                                          item={item}
+                                        />
+                                      )
+                                )
                             }
                         </div>
                     </div>

@@ -125,8 +125,9 @@ def scrape_hackernews():
                 story.job_rank = v.jobs
 
             stories.append(story)
+            j += 1
+
         print(j)
-        j+=1
     print('hmmm')
     aaa=''
     try:
