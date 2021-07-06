@@ -26,12 +26,12 @@ def scrape_hackernews():
     class Story(object):
 
         id: int = 0
-        front: int = -1
-        new: int = -1
-        best: int = -1
-        show: int = -1
-        ask: int = -1
-        jobs: int = -1
+        front: int = 1000000
+        new: int = 1000000
+        best: int = 1000000
+        show: int = 1000000
+        ask: int = 1000000
+        jobs: int = 1000000
 
     items = dict()
     news_client = NewsClient()

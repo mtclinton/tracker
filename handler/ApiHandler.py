@@ -18,7 +18,7 @@ class HomeHandler(Resource):
 class HnfrontHandler(Resource):
     def get(self):
 
-        data = util.query_db("select * from hn_item order by id desc limit 15")
+        data = util.query_db("select * from hn_item order by front_rank asc limit 15")
         return {
             'resultStatus': 'SUCCESS',
             'message': data
