@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 from hnscraper import NewsClient
 from flask import Flask, render_template, request, g
@@ -35,7 +36,11 @@ def scrape_hackernews():
 
     items = dict()
     news_client = NewsClient()
-    print('fetching')
+    now = datetime.now()
+
+    current_time = now.strftime("%H:%M:%S")
+    print("Start Time =", current_time)
+    # print('fetching')
 
     front = news_client.get_top_story_ids()
     new = news_client.get_new_story_ids()
@@ -43,7 +48,7 @@ def scrape_hackernews():
     show = news_client.get_show_story_ids()
     ask = news_client.get_ask_story_ids()
     jobs = news_client.get_job_story_ids()
-    print('finished fetching')
+    # print('finished fetching')
     for index, story_id in enumerate(front):
         if story_id in items.keys():
             items[story_id].front = index
@@ -85,23 +90,25 @@ def scrape_hackernews():
         else:
             s = Story(id=story_id, jobs=index)
             items[story_id] = s
-    print('finished sorting')
+    # print('finished sorting')
     con = sql.connect("database.db")
     cur = con.cursor()
     cur.execute("select id from hn_delete order by id desc;")
     data = cur.fetchall()
-    print('data: '+str(data))
+    # print('data: '+str(data))
     con.commit()
 
     con.close()
 
     stories = []
-
+    nones=[]
     # remove deleted items
     j=0
     print(len(items))
     for k, v in items.items():
         if j % 50 == 0:
+            if j % 300 == 0:
+                print(j)
             time.sleep(5)
         if k in data:
             del items[k]
@@ -109,7 +116,7 @@ def scrape_hackernews():
         else:
             story = news_client.get_item_by_id(k)
             if story == None:
-                print(k)
+                nones.append(k)
                 continue
             if v.front != None:
                 story.front_rank = v.front
@@ -127,8 +134,7 @@ def scrape_hackernews():
             stories.append(story)
             j += 1
 
-        print(j)
-    print('hmmm')
+        # print(j)
     aaa=''
     try:
 
@@ -142,7 +148,7 @@ def scrape_hackernews():
                             stor.id, stor.deleted, stor.type, stor.by, stor.time, stor.dead, stor.parent, stor.poll,
                             stor.kids, stor.url, stor.score, stor.title, stor.parts, stor.descendants, stor.front_rank,
                             stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.job_rank, stor.starred)
-                print('story: '+str(i))
+                # print('story: '+str(i))
                 i+=1
                 cur.execute("INSERT INTO hn_item (id, deleted,type,author,time,dead,parent,poll,kids,url,score,title,parts,descendants,front_rank  ,new_rank  ,best_rank  ,ask_rank  ,show_rank  ,job_rank  ,starred) "
                             "VALUES(?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?)",
@@ -151,11 +157,16 @@ def scrape_hackernews():
                             str(stor.kids), stor.url, stor.score, stor.title, str(stor.parts), stor.descendants, stor.front_rank,
                             stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.job_rank, stor.starred))
                 msg = "Records successfully added"
-                print(msg)
+                # print(msg)
             con.commit()
             msg = "Records successfully added"
-            print(msg)
+            # print(msg)
+        print(nones)
+        print('done updating records')
+        now = datetime.now()
 
+        current_time = now.strftime("%H:%M:%S")
+        print("End Time =", current_time)
 
     except Exception as e:
         con.rollback()
@@ -164,3 +175,4 @@ def scrape_hackernews():
         print(aaa)
 
 
+#scrape_hackernews()

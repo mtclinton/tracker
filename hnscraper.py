@@ -129,7 +129,6 @@ class NewsClient(object):
             stories as list of `Item`
         """
         top_story_ids = self.get_top_story_ids(limit=fetchMax)
-        print(top_story_ids)
         top_story_items = []
         for top_story_id in top_story_ids:
             top_story_items.append(self.get_item_by_id(top_story_id))

@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, g
 import sqlite3 as sql
 from flask_restful import Api, Resource, reqparse
@@ -5,7 +7,8 @@ from flask_cors import CORS #comment this on deployment
 from flask_apscheduler import APScheduler
 
 from scheduler import scrape_hackernews
-from handler.ApiHandler import HomeHandler, HnfrontHandler
+from handler.ApiHandler import HomeHandler, HnfrontHandler, HnnewHandler, HnbestHandler, HnaskHandler, HnjobHandler, HnshowHandler
+from apscheduler.schedulers.background import BackgroundScheduler
 
 def scrape():
     scrape_hackernews()
@@ -20,13 +23,21 @@ api = Api(app)
 
 api.add_resource(HomeHandler, "/")
 
-api.add_resource(HnfrontHandler, "/hn/front")
+api.add_resource(HnfrontHandler, "/hn/front/<int:page>")
+api.add_resource(HnnewHandler, "/hn/new/<int:page>")
+api.add_resource(HnbestHandler, "/hn/best/<int:page>")
+api.add_resource(HnaskHandler, "/hn/ask/<int:page>")
+api.add_resource(HnjobHandler, "/hn/job/<int:page>")
+api.add_resource(HnshowHandler, "/hn/show/<int:page>")
 
-scheduler = APScheduler()
-scheduler.init_app(app)
+# scheduler = APScheduler()
+# scheduler.init_app(app)
+# scheduler.start()
+if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
 
-
-scheduler.start()
+    sched = BackgroundScheduler(daemon=True)
+    sched.add_job(scrape,'interval',minutes=10)
+    sched.start()
 
 if __name__ == '__main__':
     app.run(debug=True)

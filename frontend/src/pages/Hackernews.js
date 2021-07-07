@@ -4,12 +4,13 @@ import Sidebar from "../components/hackernews/sidebar";
 import Nav from "../components/nav";
 import TopWorkNav from "../components/hackernews/top_work_nav";
 import Item from "../components/hackernews/Item";
+import getPageNumber from "../util/pageNumber";
 
 const BASE_API_URL = 'http://localhost:5000';
 
-const fetchStories = async ()  => {
+const fetchStories = async (page)  => {
     try {
-        let request = `${BASE_API_URL}/hn/front`;
+        let request = `${BASE_API_URL}/hn/front/${page}`;
 
         return fetch(request).then((response) => {
             return response.json().then((data) => {
@@ -35,7 +36,7 @@ function Hackernews(props) {
         console.log('calling use effect')
         setLoading(true);
         async function getStories() {
-            setStories(await fetchStories())
+            setStories(await fetchStories(getPageNumber(match.params.page)))
             // setQuestions();
             setLoading(false);
         }
