@@ -27,12 +27,12 @@ def scrape_hackernews():
     class Story(object):
 
         id: int = 0
-        front: int = 1000000
-        new: int = 1000000
-        best: int = 1000000
-        show: int = 1000000
-        ask: int = 1000000
-        jobs: int = 1000000
+        front: int = None
+        new: int = None
+        best: int = None
+        show: int = None
+        ask: int = None
+        jobs: int = None
 
     items = dict()
     news_client = NewsClient()
@@ -129,7 +129,7 @@ def scrape_hackernews():
             if v.show != None:
                 story.show_rank = v.show
             if v.jobs != None:
-                story.job_rank = v.jobs
+                story.jobs_rank = v.jobs
 
             stories.append(story)
             j += 1
@@ -147,7 +147,7 @@ def scrape_hackernews():
                 aaa = (
                             stor.id, stor.deleted, stor.type, stor.by, stor.time, stor.dead, stor.parent, stor.poll,
                             stor.kids, stor.url, stor.score, stor.title, stor.parts, stor.descendants, stor.front_rank,
-                            stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.job_rank, stor.starred)
+                            stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.jobs_rank, stor.starred)
                 # print('story: '+str(i))
                 i+=1
                 cur.execute("INSERT INTO hn_item (id, deleted,type,author,time,dead,parent,poll,kids,url,score,title,parts,descendants,front_rank  ,new_rank  ,best_rank  ,ask_rank  ,show_rank  ,job_rank  ,starred) "
@@ -155,7 +155,7 @@ def scrape_hackernews():
                             (
                             stor.id, stor.deleted, stor.type, stor.by, stor.time, stor.dead, stor.parent, stor.poll,
                             str(stor.kids), stor.url, stor.score, stor.title, str(stor.parts), stor.descendants, stor.front_rank,
-                            stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.job_rank, stor.starred))
+                            stor.new_rank, stor.best_rank, stor.ask_rank, stor.show_rank, stor.jobs_rank, stor.starred))
                 msg = "Records successfully added"
                 # print(msg)
             con.commit()
@@ -175,4 +175,4 @@ def scrape_hackernews():
         print(aaa)
 
 
-#scrape_hackernews()
+# scrape_hackernews()

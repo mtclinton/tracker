@@ -21,7 +21,7 @@ class HnfrontHandler(Resource):
             raise Exception('page error')
         off = (page-1)*15
 
-        data = util.query_db("select * from hn_item order by front_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE front_rank IS NOT NULL order by front_rank asc limit 20 offset :page;", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -33,7 +33,7 @@ class HnbestHandler(Resource):
             raise Exception('page error')
         off = (page-1)*15
 
-        data = util.query_db("select * from hn_item order by best_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item order by best_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -45,7 +45,7 @@ class HnnewHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*15
-        data = util.query_db("select * from hn_item order by new_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item order by new_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -57,7 +57,7 @@ class HnaskHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*15
-        data = util.query_db("select * from hn_item order by ask_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item order by ask_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -70,7 +70,7 @@ class HnshowHandler(Resource):
             raise Exception('page error')
         off = (page-1)*15
 
-        data = util.query_db("select * from hn_item order by show_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item order by show_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -82,7 +82,7 @@ class HnjobHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*15
-        data = util.query_db("select * from hn_item order by job_rank asc limit 15 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item order by job_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data

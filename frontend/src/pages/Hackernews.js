@@ -6,6 +6,10 @@ import TopWorkNav from "../components/hackernews/top_work_nav";
 import Item from "../components/hackernews/Item";
 import getPageNumber from "../util/pageNumber";
 
+import ReactPaginate from 'react-paginate';
+import Pagination from "../components/Pagination";
+
+
 const BASE_API_URL = 'http://localhost:5000';
 
 const fetchStories = async (page)  => {
@@ -70,6 +74,9 @@ function Hackernews(props) {
                                       )
                                 )
                             }
+                        </div>
+                        <div style={{margin:"50px 0px"}}>
+                            <Pagination/>
                         </div>
                     </div>
                 </div>

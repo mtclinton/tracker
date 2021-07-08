@@ -267,3 +267,15 @@ and (max-width : 750px) {
 @media only screen and (min-width : 1260px) and (max-width : 1349px) {
     .comment { max-width: 1130px; overflow: hidden }
 }
+
+.trash {
+    margin-left: 10px;
+    font-size: 15px;
+    color: red;
+}
+
+.star {
+    margin-right: 5px;
+    font-size: 15px;
+    color: #D1D100;
+}

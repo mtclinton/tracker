@@ -17,11 +17,11 @@ function Item(props) {
         <span className="title">
           <ItemUrl item={item} />
         </span>
-        <i className="fas fa-trash-alt"></i>
+        <i className="trash fas fa-trash-alt"></i>
       </div>
       <div>
         <span className="subtext" style={{ paddingLeft: '20px' }}>
-          <i className="far fa-star"></i>
+          {item[21] ? <i className="star fas fa-star"></i> : <i className="star far fa-star"></i>}
           <span className="score" id="score_27089576">
             {item[11]}
             {' '}

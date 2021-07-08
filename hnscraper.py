@@ -20,12 +20,12 @@ class Item(object):
         self.parts = response_data.get('parts')
         self.descendants = response_data.get('descendants')
 
-        self.front_rank = 1000000
-        self.new_rank = 1000000
-        self.best_rank = 1000000
-        self.ask_rank = 1000000
-        self.show_rank = 1000000
-        self.jobs_rank = 1000000
+        self.front_rank = None
+        self.new_rank = None
+        self.best_rank = None
+        self.ask_rank = None
+        self.show_rank = None
+        self.jobs_rank = None
 
         self.starred = 0
 
