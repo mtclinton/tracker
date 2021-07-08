@@ -6,7 +6,6 @@ import TopWorkNav from "../components/hackernews/top_work_nav";
 import Item from "../components/hackernews/Item";
 import getPageNumber from "../util/pageNumber";
 
-import ReactPaginate from 'react-paginate';
 import Pagination from "../components/Pagination";
 
 
@@ -29,11 +28,30 @@ const fetchStories = async (page)  => {
 
 };
 
+
+const fetchPages = async ()  => {
+    try {
+        let request = `${BASE_API_URL}/hn/pages/front_rank`;
+
+        return fetch(request).then((response) => {
+            return response.json().then((data) => {
+                return data.message;
+            });
+        });
+
+    } catch (error) {
+        console.log(error);
+        return 0;
+    }
+
+};
+
 function Hackernews(props) {
     const { match } = props;
 
     const [loading, setLoading] = useState(true);
     const [stories, setStories] = useState([])
+    const [pages, setPages] = useState([])
 
     useEffect(() => {
         if(stories.length !== 0 ) return
@@ -45,7 +63,12 @@ function Hackernews(props) {
             setLoading(false);
         }
 
+        async function getPages() {
+            setPages(await fetchPages())
+        }
+
         getStories();
+        getPages();
 
     }, [stories]);
 
@@ -76,7 +99,7 @@ function Hackernews(props) {
                             }
                         </div>
                         <div style={{margin:"50px 0px"}}>
-                            <Pagination/>
+                            <Pagination page={getPageNumber(match.params.page)} pages={pages}/>
                         </div>
                     </div>
                 </div>

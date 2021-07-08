@@ -7,7 +7,8 @@ from flask_cors import CORS #comment this on deployment
 from flask_apscheduler import APScheduler
 
 from scheduler import scrape_hackernews
-from handler.ApiHandler import HomeHandler, HnfrontHandler, HnnewHandler, HnbestHandler, HnaskHandler, HnjobHandler, HnshowHandler
+from handler.ApiHandler import HomeHandler, HnfrontHandler, HnnewHandler, \
+    HnbestHandler, HnaskHandler, HnjobHandler, HnshowHandler, HnPageHandler
 from apscheduler.schedulers.background import BackgroundScheduler
 
 def scrape():
@@ -29,6 +30,8 @@ api.add_resource(HnbestHandler, "/hn/best/<int:page>")
 api.add_resource(HnaskHandler, "/hn/ask/<int:page>")
 api.add_resource(HnjobHandler, "/hn/job/<int:page>")
 api.add_resource(HnshowHandler, "/hn/show/<int:page>")
+api.add_resource(HnPageHandler, "/hn/pages/<type>")
+
 
 # scheduler = APScheduler()
 # scheduler.init_app(app)
