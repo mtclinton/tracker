@@ -99,7 +99,7 @@ function Hackernews(props) {
                             }
                         </div>
                         <div style={{margin:"50px 0px"}}>
-                            <Pagination page={getPageNumber(match.params.page)} pages={pages}/>
+                            <Pagination page={getPageNumber(match.params.page)} pages={pages} type={''}/>
                         </div>
                     </div>
                 </div>
