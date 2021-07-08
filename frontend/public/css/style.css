@@ -274,8 +274,26 @@ and (max-width : 750px) {
     color: red;
 }
 
+.trash:hover {
+    transform:scale(1.3);
+    -moz-transform:scale(1.3);
+    -webkit-transform:scale(1.3);
+    -ms-transform:scale(1.3);
+    -o-transform:scale(1.3);
+
+}
+
 .star {
     margin-right: 5px;
     font-size: 15px;
     color: #D1D100;
+    transition: font-size 0.35s ease;
+}
+
+.star:hover {
+    transform: scale(1.3);
+    -moz-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    -o-transform: scale(1.3);
 }
