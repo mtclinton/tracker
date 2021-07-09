@@ -3,7 +3,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
 function extractHostname(url) {
-    console.log(url)
+    // console.log(url)
   const { hostname } = new URL(url);
   return hostname;
 }
@@ -15,8 +15,8 @@ const psl = require('psl');
 
 function ItemUrl(props) {
   const { item } = props;
-  console.log(typeof item[10]);
-  console.log(item[10]);
+  // console.log(typeof item[10]);
+  // console.log(item[10]);
 
   if (item[10] == null) {
     return (

@@ -104,4 +104,23 @@ CREATE TABLE hn_delete (
         ask_rank   INTEGER,
         show_rank   INTEGER,
         job_rank   INTEGER
-)
+);
+
+CREATE TABLE starred (
+        id INTEGER PRIMARY KEY,
+        deleted INTEGER,
+        type TEXT,
+        author TEXT,
+        time INTEGER,
+        text TEXT,
+        dead INTEGER,
+        parent TEXT,
+        poll TEXT,
+        kids TEXT,
+        url TEXT,
+        score INTEGER,
+        title TEXT,
+        parts TEXT,
+        descendants INTEGER
+
+);

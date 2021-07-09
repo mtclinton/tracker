@@ -2,8 +2,9 @@ import math
 
 from flask_restful import Api, Resource, reqparse
 from handler import util
+from hnscraper import Item
 
-
+import sqlite3 as sql
 
 
 
@@ -24,6 +25,8 @@ class HnfrontHandler(Resource):
         off = (page-1)*15
 
         data = util.query_db("select * from hn_item WHERE front_rank IS NOT NULL order by front_rank asc limit 20 offset :page;", {'page' : off})
+        print('front')
+        print(data[0][0])
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -101,4 +104,28 @@ class HnPageHandler(Resource):
         return {
             'resultStatus': 'SUCCESS',
             'message': data
+        }
+
+class HnStarHandler(Resource):
+    def get(self, id):
+        con = sql.connect("database.db")
+        cur = con.cursor()
+
+        cur.execute("UPDATE hn_item SET starred = 1 WHERE id = :id;", {'id' : id})
+
+        data = cur.execute("select * from hn_item WHERE id = :id;", {'id' : id})
+        data = data.fetchall()
+        stor =data[0]
+        print(stor)
+        cur.execute("INSERT INTO starred (id, deleted,type,author,time,dead,parent,poll,kids,url,score,title,parts,descendants) "
+                            "VALUES(?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?, ?)",
+                            (
+                            stor[0], stor[1], stor[2], stor[3], stor[4], stor[5], stor[6], stor[7],
+                            stor[8], stor[9], stor[10], stor[11], stor[12], stor[13]))
+        con.commit()
+        con.close()
+        print("updated")
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': 1
         }
