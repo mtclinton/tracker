@@ -16,7 +16,7 @@ const psl = require('psl');
 function ItemUrl(props) {
   const { item } = props;
   // console.log(typeof item[10]);
-  // console.log(item[10]);
+  // console.log(item);
 
   if (item[10] == null) {
     return (

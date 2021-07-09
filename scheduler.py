@@ -96,7 +96,8 @@ def scrape_hackernews():
     cur.execute("select id from hn_delete order by id desc;")
     data = cur.fetchall()
     # print('data: '+str(data))
-    con.commit()
+    cur.execute("select id from starred order by id desc;")
+    starred = cur.fetchall()
 
     con.close()
 
@@ -144,6 +145,8 @@ def scrape_hackernews():
             con.commit()
             i=0
             for stor in stories:
+                if stor.id in starred:
+                    stor.starred = 1
                 aaa = (
                             stor.id, stor.deleted, stor.type, stor.by, stor.time, stor.dead, stor.parent, stor.poll,
                             stor.kids, stor.url, stor.score, stor.title, stor.parts, stor.descendants, stor.front_rank,
