@@ -106,6 +106,22 @@ class HnPageHandler(Resource):
             'message': data
         }
 
+class HnUnstarHandler(Resource):
+    def get(self, id):
+        con = sql.connect("database.db")
+        cur = con.cursor()
+
+        cur.execute("UPDATE hn_item SET starred = 0 WHERE id = :id;", {'id' : id})
+
+        cur.execute("delete from starred WHERE id = :id;", {'id' : id})
+        con.commit()
+        con.close()
+        print("deleted")
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': 1
+        }
+
 class HnStarHandler(Resource):
     def get(self, id):
         con = sql.connect("database.db")
@@ -116,7 +132,6 @@ class HnStarHandler(Resource):
         data = cur.execute("select * from hn_item WHERE id = :id;", {'id' : id})
         data = data.fetchall()
         stor =data[0]
-        print(stor)
         cur.execute("INSERT INTO starred (id, deleted,type,author,time,dead,parent,poll,kids,url,score,title,parts,descendants) "
                             "VALUES(?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?, ?)",
                             (
@@ -124,7 +139,6 @@ class HnStarHandler(Resource):
                             stor[8], stor[9], stor[10], stor[11], stor[12], stor[13]))
         con.commit()
         con.close()
-        print("updated")
         return {
             'resultStatus': 'SUCCESS',
             'message': 1
