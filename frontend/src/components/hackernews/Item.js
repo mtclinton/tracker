@@ -54,6 +54,23 @@ function Item(props) {
 
   };
 
+  const sendDelete = async (id)  => {
+    try {
+        let request = `${BASE_API_URL}/hn/delete/${id}`;
+
+        return fetch(request).then((response) => {
+            return response.json().then((data) => {
+                return data.message;
+            });
+        });
+
+    } catch (error) {
+        console.log(error);
+        return 0;
+    }
+
+  };
+
   function unstar() {
 
     async function getUnstarred() {
@@ -89,6 +106,19 @@ function Item(props) {
 
   }
 
+  function trash() {
+
+    async function sendTrash() {
+        return await sendDelete(item[0]);
+    }
+
+    // add error testing on senddelete
+    sendTrash();
+
+
+  }
+
+
   return (
       <div className="story">
         {
@@ -102,7 +132,7 @@ function Item(props) {
                 <span className="title">
                   <ItemUrl item={item}/>
                 </span>
-              <i className="trash fas fa-trash-alt"></i>
+             <span onClick={(event) => trash()}> <i className="trash fas fa-trash-alt"></i></span>
             </div>
             <div>
               <span className="subtext" style={{paddingLeft: '20px'}}>

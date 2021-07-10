@@ -21,6 +21,7 @@ import JobsHackernews from "./pages/JobsHackernews";
 import NewHackernews from "./pages/NewHackernews";
 import BestHackernews from "./pages/BestHackernews";
 import StarredHackernews from "./pages/StarredHackernews";
+import DeletedHackernews from "./pages/DeletedHackernews";
 
 
 function NotFound() {
@@ -59,6 +60,10 @@ ReactDOM.render(
             <Route
                 path="/hackernews/starred/:page(\d+)?"
                 component={StarredHackernews}
+            />
+            <Route
+                path="/hackernews/deleted/:page(\d+)?"
+                component={DeletedHackernews}
             />
             <Route
                 path="/hackernews/:page(\d+)?"

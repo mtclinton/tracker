@@ -167,3 +167,49 @@ class HnStarPageHandler(Resource):
             'resultStatus': 'SUCCESS',
             'message': data
         }
+
+class HnDeleteHandler(Resource):
+    def get(self, id):
+        con = sql.connect("database.db")
+        cur = con.cursor()
+
+        data = cur.execute("select * from hn_item WHERE id = :id;", {'id' : id})
+        data = data.fetchall()
+        stor =data[0]
+        cur.execute("delete from hn_item WHERE id = :id;", {'id' : id})
+
+        cur.execute("INSERT INTO hn_delete (id, deleted,type,author,time, text,dead,parent,poll,kids,url,score,title,parts,descendants) "
+                            "VALUES(?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,?, ?, ?)",
+                            (
+                            stor[0], stor[1], stor[2], stor[3], stor[4], stor[5], stor[6], stor[7],
+                            stor[8], stor[9], stor[10], stor[11], stor[12], stor[13], stor[14]))
+        con.commit()
+        con.close()
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': 1
+        }
+
+class HnDeletedHandler(Resource):
+    def get(self, page=1):
+        if page < 1:
+            raise Exception('page error')
+        off = (page-1)*20
+        data = util.query_db("select * from hn_delete order by id asc limit 20 offset :page", {'page' : off})
+        print(data)
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': data
+        }
+
+class HnDeletePageHandler(Resource):
+    def get(self):
+
+
+        data = util.query_db("select count(*) from hn_delete;")
+        data = math.ceil(data[0][0]/20)
+        #print(data[0][0])
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': data
+        }

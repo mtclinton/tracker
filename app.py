@@ -9,7 +9,8 @@ from flask_apscheduler import APScheduler
 from scheduler import scrape_hackernews
 from handler.ApiHandler import HomeHandler, HnfrontHandler, HnnewHandler, \
     HnbestHandler, HnaskHandler, HnjobHandler, HnshowHandler, HnPageHandler, \
-    HnStarHandler, HnUnstarHandler,HnStarredHandler,HnStarPageHandler
+    HnStarHandler, HnUnstarHandler,HnStarredHandler,HnStarPageHandler, \
+    HnDeleteHandler, HnDeletePageHandler, HnDeletedHandler
 from apscheduler.schedulers.background import BackgroundScheduler
 
 def scrape():
@@ -38,6 +39,11 @@ api.add_resource(HnStarHandler, "/hn/star/<int:id>")
 
 api.add_resource(HnStarredHandler, "/hn/starred/<int:page>")
 api.add_resource(HnStarPageHandler, "/hn/starredpages")
+
+api.add_resource(HnDeleteHandler, "/hn/delete/<int:id>")
+
+api.add_resource(HnDeletedHandler, "/hn/deleted/<int:page>")
+api.add_resource(HnDeletePageHandler, "/hn/deletedpages")
 
 
 # scheduler = APScheduler()

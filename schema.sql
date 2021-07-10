@@ -96,14 +96,7 @@ CREATE TABLE hn_delete (
         score INTEGER,
         title TEXT,
         parts TEXT,
-        descendants INTEGER,
-
-        front_rank   INTEGER,
-        new_rank   INTEGER,
-        best_rank   INTEGER,
-        ask_rank   INTEGER,
-        show_rank   INTEGER,
-        job_rank   INTEGER
+        descendants INTEGER
 );
 
 CREATE TABLE starred (

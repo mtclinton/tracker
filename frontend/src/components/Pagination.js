@@ -9,7 +9,7 @@ function Pagination(props) {
       return (
           <nav className="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
               <a href={'/hackernews'+type} className="pagination-previous" disabled={page===1}>Previous</a>
-              <a href={'/hackernews'+type+'/2'} className="pagination-next" disabled={page===pages}>Next</a>
+              <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
               <ul className="pagination-list">
                   {Array.from({ length: pages }, (_, i) =>
                             <li><a href={'/hackernews'+type+'/'+i} className={`pagination-link ${(page===i) ? "is-current" :''}`} aria-label={`Goto page ${i}`}>{i}</a></li>
@@ -20,11 +20,11 @@ function Pagination(props) {
       )
   }
 
-  if(page < 5){
+  if(page < 4){
       return (
           <nav className="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
-              <a className="pagination-previous" disabled={page===1}>Previous</a>
-              <a className="pagination-next" disabled={page===pages}>Next</a>
+              <a chref={'/hackernews'+type+'/'+(page-1)} lassName="pagination-previous" disabled={page===1}>Previous</a>
+              <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
               <ul className="pagination-list">
                   <li><a href={'/hackernews'+type} className={`pagination-link ${(page===1) ? "is-current" :''}`} aria-label="Goto page 1">1</a></li>
                   <li><a href={'/hackernews'+type+'/2'} className={`pagination-link ${(page===2) ? "is-current" :''}`} aria-label="Goto page 2">2</a></li>
@@ -42,8 +42,8 @@ function Pagination(props) {
   if((pages-page) < 4){
       return (
           <nav className="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
-              <a className="pagination-previous" disabled={page===1}>Previous</a>
-              <a className="pagination-next" disabled={page===pages}>Next</a>
+              <a href={'/hackernews'+type+'/'+(page-1)} className="pagination-previous" disabled={page===1}>Previous</a>
+              <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
               <ul className="pagination-list">
                   <li><a href={'/hackernews'+type} className="pagination-link" aria-label="Goto page 1">1</a></li>
                   <li><a href={'/hackernews'+type+'/2'} className="pagination-link" aria-label="Goto page 2">2</a></li>
@@ -60,8 +60,8 @@ function Pagination(props) {
 
   return (
       <nav className="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
-          <a className="pagination-previous" disabled={page===1}>Previous</a>
-          <a className="pagination-next" disabled={page===pages}>Next</a>
+          <a href={'/hackernews'+type+'/'+(page-1)} className="pagination-previous" disabled={page===1}>Previous</a>
+          <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
           <ul className="pagination-list">
               <li><a href={'/hackernews'+type} className="pagination-link" aria-label="Goto page 1">1</a></li>
               <li><span className="pagination-ellipsis">&hellip;</span></li>
