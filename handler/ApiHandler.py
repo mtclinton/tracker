@@ -100,8 +100,8 @@ class HnPageHandler(Resource):
             data = util.query_db("select count(*) from hn_item WHERE new_rank IS NOT NULL;")
         elif type == 'best_rank':
             data = util.query_db("select count(*) from hn_item WHERE best_rank IS NOT NULL;")
-        elif type == 'show_rank':
-            data = util.query_db("select count(*) from hn_item WHERE show_rank IS NOT NULL;")
+        elif type == 'ask_rank':
+            data = util.query_db("select count(*) from hn_item WHERE ask_rank IS NOT NULL;")
         elif type == 'job_rank':
             data = util.query_db("select count(*) from hn_item WHERE job_rank IS NOT NULL;")
         elif type == 'show_rank':

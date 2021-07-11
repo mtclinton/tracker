@@ -10,8 +10,14 @@ function Pagination(props) {
   if (pages < 7){
       return (
           <nav className="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
-              <a href={'/hackernews'+type} className="pagination-previous" disabled={page===1}>Previous</a>
-              <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
+              {(page!==1) &&
+                            <a href={'/hackernews'+type+'/'+(page-1)} className="pagination-previous" >Previous</a>
+
+                }
+              {(page!==pages) &&
+                            <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next">Next</a>
+
+                }
               <ul className="pagination-list">
                   {Array.from({ length: pages }, (_, i) =>
                             <li><a href={'/hackernews'+type+'/'+(i+1)} className={`pagination-link ${(page===(i+1)) ? "is-current" :''}`} aria-label={`Goto page ${(i+1)}`}>{(i+1)}</a></li>
