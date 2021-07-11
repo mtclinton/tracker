@@ -4,6 +4,8 @@ import React from 'react';
 
 function Pagination(props) {
   const { page, pages, type } = props;
+    console.log(page);
+    console.log(pages);
 
   if (pages < 7){
       return (
@@ -12,7 +14,7 @@ function Pagination(props) {
               <a href={'/hackernews'+type+'/'+(page+1)} className="pagination-next" disabled={page===pages}>Next</a>
               <ul className="pagination-list">
                   {Array.from({ length: pages }, (_, i) =>
-                            <li><a href={'/hackernews'+type+'/'+i} className={`pagination-link ${(page===i) ? "is-current" :''}`} aria-label={`Goto page ${i}`}>{i}</a></li>
+                            <li><a href={'/hackernews'+type+'/'+(i+1)} className={`pagination-link ${(page===(i+1)) ? "is-current" :''}`} aria-label={`Goto page ${(i+1)}`}>{(i+1)}</a></li>
                   )}
 
               </ul>

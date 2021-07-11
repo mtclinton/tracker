@@ -23,10 +23,8 @@ class HnfrontHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*20
-
         data = util.query_db("select * from hn_item WHERE front_rank IS NOT NULL order by front_rank asc limit 20 offset :page;", {'page' : off})
-        print('front')
-        print(data[0][0])
+        # print(data[0][0])   # error if none
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -38,7 +36,7 @@ class HnbestHandler(Resource):
             raise Exception('page error')
         off = (page-1)*20
 
-        data = util.query_db("select * from hn_item order by best_rank asc limit 20 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE best_rank IS NOT NULL order by best_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -50,7 +48,7 @@ class HnnewHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*20
-        data = util.query_db("select * from hn_item order by new_rank asc limit 20 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE new_rank IS NOT NULL order by new_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -62,7 +60,7 @@ class HnaskHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*20
-        data = util.query_db("select * from hn_item order by ask_rank asc limit 20 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE ask_rank IS NOT NULL order by ask_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -75,7 +73,7 @@ class HnshowHandler(Resource):
             raise Exception('page error')
         off = (page-1)*20
 
-        data = util.query_db("select * from hn_item order by show_rank asc limit 20 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE show_rank IS NOT NULL order by show_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -87,7 +85,7 @@ class HnjobHandler(Resource):
         if page < 1:
             raise Exception('page error')
         off = (page-1)*20
-        data = util.query_db("select * from hn_item order by job_rank asc limit 20 offset :page", {'page' : off})
+        data = util.query_db("select * from hn_item WHERE job_rank IS NOT NULL order by job_rank asc limit 20 offset :page", {'page' : off})
         return {
             'resultStatus': 'SUCCESS',
             'message': data
@@ -96,11 +94,25 @@ class HnjobHandler(Resource):
 
 class HnPageHandler(Resource):
     def get(self, type):
-
-
-        data = util.query_db("select count(:type1) from hn_item WHERE :type1 IS NOT NULL;", {'type1' : type})
+        if type == 'front_rank':
+            data = util.query_db("select count(*) from hn_item WHERE front_rank IS NOT NULL;")
+        elif type == 'new_rank':
+            data = util.query_db("select count(*) from hn_item WHERE new_rank IS NOT NULL;")
+        elif type == 'best_rank':
+            data = util.query_db("select count(*) from hn_item WHERE best_rank IS NOT NULL;")
+        elif type == 'show_rank':
+            data = util.query_db("select count(*) from hn_item WHERE show_rank IS NOT NULL;")
+        elif type == 'job_rank':
+            data = util.query_db("select count(*) from hn_item WHERE job_rank IS NOT NULL;")
+        elif type == 'show_rank':
+            data = util.query_db("select count(*) from hn_item WHERE show_rank IS NOT NULL;")
+        else:
+            return {
+                'resultStatus': 'FAILURE',
+                'message': 0
+            }
         data = math.ceil(data[0][0]/20)
-        #print(data[0][0])
+        print(data)
         return {
             'resultStatus': 'SUCCESS',
             'message': data

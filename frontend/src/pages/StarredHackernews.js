@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from "../components/hackernews/sidebar";
 import Nav from "../components/nav";
 import TopWorkNav from "../components/hackernews/top_work_nav";
-import Item from "../components/hackernews/Item";
+import EditItem from "../components/hackernews/EditItem";
 import getPageNumber from "../util/pageNumber";
 
 import Pagination from "../components/Pagination";
@@ -90,7 +90,7 @@ function StarredHackernews(props) {
                             {
                                 !loading
                                 && stories.map((item, i) => (
-                                        <Item
+                                        <EditItem
                                           key={item[0]}
                                           item={item}
                                         />
@@ -99,7 +99,7 @@ function StarredHackernews(props) {
                             }
                         </div>
                         <div style={{margin:"50px 0px"}}>
-                            <Pagination page={getPageNumber(match.params.page)} pages={pages} type={''}/>
+                            <Pagination page={getPageNumber(match.params.page)} pages={pages} type={'/starred'}/>
                         </div>
                     </div>
                 </div>
