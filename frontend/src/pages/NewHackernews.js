@@ -83,7 +83,6 @@ function NewHackernews(props) {
 
                     <div className="column is-9">
                         <TopWorkNav match={match}/>
-                        New
                         <div className=''>
                             {
                                 loading && <div>Loading</div>

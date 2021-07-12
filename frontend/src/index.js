@@ -70,6 +70,10 @@ ReactDOM.render(
                 component={Hackernews}
             />
             <Route
+                path="/4chan"
+                component={FourChan}
+            />
+            <Route
                 path="/vices"
                 component={Vices}
             />
