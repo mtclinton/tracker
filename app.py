@@ -10,7 +10,7 @@ from scheduler import scrape_hackernews
 from handler.ApiHandler import HomeHandler, HnfrontHandler, HnnewHandler, \
     HnbestHandler, HnaskHandler, HnjobHandler, HnshowHandler, HnPageHandler, \
     HnStarHandler, HnUnstarHandler,HnStarredHandler,HnStarPageHandler, \
-    HnDeleteHandler, HnDeletePageHandler, HnDeletedHandler
+    HnDeleteHandler, HnDeletePageHandler, HnDeletedHandler, FourChanThreadHandler
 from apscheduler.schedulers.background import BackgroundScheduler
 
 def scrape():
@@ -45,6 +45,7 @@ api.add_resource(HnDeleteHandler, "/hn/delete/<int:id>")
 api.add_resource(HnDeletedHandler, "/hn/deleted/<int:page>")
 api.add_resource(HnDeletePageHandler, "/hn/deletedpages")
 
+api.add_resource(FourChanThreadHandler, "/4chan/threads/<int:page>")
 
 # scheduler = APScheduler()
 # scheduler.init_app(app)

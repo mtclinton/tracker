@@ -2,12 +2,28 @@ import React, { useEffect, useState } from 'react';
 import Nav from "../components/nav";
 import Sidebar from "../components/hackernews/sidebar";
 import TopWorkNav from "../components/hackernews/top_work_nav";
-import Item from "../components/hackernews/Item";
+// import Thread from "../components/Thread";
 import Pagination from "../components/Pagination";
 import getPageNumber from "../util/pageNumber";
 
 const BASE_API_URL = 'http://localhost:5000';
 
+const fetchThreads = async (page)  => {
+    try {
+        let request = `${BASE_API_URL}/4chan/threads/${page}`;
+
+        return fetch(request).then((response) => {
+            return response.json().then((data) => {
+                return data.message;
+            });
+        });
+
+    } catch (error) {
+        console.log(error);
+        return 0;
+    }
+
+};
 
 function FourChan(props) {
 
@@ -16,6 +32,24 @@ function FourChan(props) {
     const [loading, setLoading] = useState(true);
     const [threads, setThreads] = useState([])
     const [pages, setPages] = useState([])
+
+    useEffect(() => {
+        if(threads.length !== 0 ) return
+        setLoading(true);
+        async function getThreads() {
+            setThreads(await fetchThreads(getPageNumber(match.params.page)))
+            // setQuestions();
+            setLoading(false);
+        }
+
+        // async function getPages() {
+        //     setPages(await fetchPages())
+        // }
+
+        getThreads();
+        // getPages();
+
+    }, [threads]);
 
     return (
         <div>
@@ -35,10 +69,11 @@ function FourChan(props) {
                             {
                                 !loading
                                 && threads.map((thread, i) => (
-                                        <Item
-                                            key={thread[0]}
-                                            item={thread}
-                                        />
+                                    <div>{thread}</div>
+                                        // <Thread
+                                        //     key={thread[0]}
+                                        //     item={thread}
+                                        // />
                                     )
                                 )
                             }

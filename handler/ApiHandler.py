@@ -4,6 +4,8 @@ from flask_restful import Api, Resource, reqparse
 from handler import util
 from hnscraper import Item
 
+import requests
+
 import sqlite3 as sql
 
 
@@ -221,6 +223,38 @@ class HnDeletePageHandler(Resource):
         data = util.query_db("select count(*) from hn_delete;")
         data = math.ceil(data[0][0]/20)
         #print(data[0][0])
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': data
+        }
+
+class FourChanThreadHandler(Resource):
+    def get(self, page=1):
+
+        class FourChanClient(object):
+
+            def __init__(self):
+                self.base_url = 'https://a.4cdn.org'
+                self.response_format = 'catalog.json'
+
+            def sendRequest(self, url):
+                return requests.get(url, timeout=5).json()
+
+            def get_catalog(self):
+                board = '/g/'
+                response = self.sendRequest(self.base_url + board + self.response_format)
+                return response
+
+        data = []
+        client = FourChanClient()
+
+        r = client.get_catalog()
+        for p in r:
+            for k1, v1 in p.items():
+                if k1 == 'threads':
+                    for t in v1:
+                        data.append(t['no'])
+
         return {
             'resultStatus': 'SUCCESS',
             'message': data
