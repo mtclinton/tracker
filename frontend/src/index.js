@@ -22,6 +22,7 @@ import NewHackernews from "./pages/NewHackernews";
 import BestHackernews from "./pages/BestHackernews";
 import StarredHackernews from "./pages/StarredHackernews";
 import DeletedHackernews from "./pages/DeletedHackernews";
+import FourChan from "./pages/4chan";
 
 
 function NotFound() {
