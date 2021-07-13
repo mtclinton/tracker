@@ -253,9 +253,9 @@ class FourChanThreadHandler(Resource):
             for k1, v1 in p.items():
                 if k1 == 'threads':
                     for t in v1:
-                        data.append(t['no'])
+                        data.append([t['tim'], t['ext']])
 
         return {
             'resultStatus': 'SUCCESS',
-            'message': data
+            'message': data[:10]
         }
