@@ -69,7 +69,7 @@ function FourChan(props) {
                             {
                                 !loading
                                 && threads.map((thread, i) => (
-                                    <div><img src={"https://i.4cdn.org/g/1626146637941s.jpg"} /></div>
+                                    <div><img src={"https://i.4cdn.org/g/"+thread[0]+thread[1]} /></div>
                                         // <Thread
                                         //     key={thread[0]}
                                         //     item={thread}
