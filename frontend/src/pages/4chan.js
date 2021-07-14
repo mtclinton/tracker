@@ -68,9 +68,9 @@ function FourChan(props) {
                                             <a href={`//boards.4chan.org/g/thread/${thread['no']}`}>
                                                 <img loading="lazy" alt=""
                                                    id={`thumb-${thread['no']}`}
-                                                   className="thumb" width={`${thread['tn_w']}`}
-                                                   height={`${thread['tn_h']}`}
-                                                   src={`//i.4cdn.org/g/${thread['tim']}s${thread['ext']}`}
+                                                   className="thumb" width="150px"
+                                                   height={`${(150/thread['tn_w'])*thread['tn_h']}`}
+                                                   src={`//i.4cdn.org/g/${thread['tim']}s.jpg`}
                                                    data-id={`${thread['no']}`}/>
                                             </a>
                                             <div title="(R)eplies / (I)mage Replies" id={`meta-${thread['no']}`} className="meta">
