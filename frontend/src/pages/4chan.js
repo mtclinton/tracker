@@ -5,6 +5,7 @@ import TopWorkNav from "../components/hackernews/top_work_nav";
 // import Thread from "../components/Thread";
 import Pagination from "../components/Pagination";
 import getPageNumber from "../util/pageNumber";
+import Item from "../components/hackernews/Item";
 
 const BASE_API_URL = 'http://localhost:5000';
 
@@ -54,35 +55,39 @@ function FourChan(props) {
     return (
         <div>
             <Nav/>
-            <div className="container">
-                <div className="columns">
-                    <div className="column is-3 ">
-                        <Sidebar match={match}/>
-                    </div>
+            <div id="content">
+               <div id="threads" className="extended-small">
 
-                    <div className="column is-9">
-                        <TopWorkNav match={match}/>
-                        <div className=''>
-                            {
-                                loading && <div>Loading</div>
-                            }
-                            {
-                                !loading
-                                && threads.map((thread, i) => (
-                                    <div><img src={"https://i.4cdn.org/g/"+thread[0]+thread[1]} /></div>
-                                        // <Thread
-                                        //     key={thread[0]}
-                                        //     item={thread}
-                                        // />
-                                    )
-                                )
-                            }
-                        </div>
-                        <div style={{margin: "50px 0px"}}>
-                            <Pagination page={getPageNumber(match.params.page)} pages={pages} type={''}/>
-                        </div>
-                    </div>
-                </div>
+                   {
+                        loading && <div>Loading</div>
+                    }
+                    {
+                        !loading
+                        && threads.map((thread, i) => (
+                                <div id={`thread-${thread['no']}`} className="thread">
+                                            <a href={`//boards.4chan.org/g/thread/${thread['no']}`}>
+                                                <img loading="lazy" alt=""
+                                                   id={`thumb-${thread['no']}`}
+                                                   className="thumb" width={`${thread['tn_w']}`}
+                                                   height={`${thread['tn_h']}`}
+                                                   src={`//i.4cdn.org/g/${thread['tim']}s${thread['ext']}`}
+                                                   data-id={`${thread['no']}`}/>
+                                            </a>
+                                            <div title="(R)eplies / (I)mage Replies" id={`meta-${thread['no']}`} className="meta">
+                                                <i>R: <b>301</b></i> / I: <b>48</b>/div>
+                                            <div className="teaser">
+                                                <b>{thread['sum']}</b>:{thread['com']}
+
+                                            </div>
+                                        </div>
+                               </div>
+                              )
+                        )
+                    }
+
+
+
+               </div>
             </div>
 
 

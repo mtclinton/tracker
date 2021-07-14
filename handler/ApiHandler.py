@@ -5,6 +5,7 @@ from handler import util
 from hnscraper import Item
 
 import requests
+import json
 
 import sqlite3 as sql
 
@@ -231,6 +232,35 @@ class HnDeletePageHandler(Resource):
 class FourChanThreadHandler(Resource):
     def get(self, page=1):
 
+        class Thread(object):
+
+            def __init__(self, response_data):
+                self.no = response_data.get('no')
+                self.sticky = response_data.get('sticky')
+                self.closed = response_data.get('closed')
+                self.name = response_data.get('name')
+                self.sub = response_data.get('sub')
+                self.com = response_data.get('com')
+                self.filename = response_data.get('filename')
+                self.ext = response_data.get('ext')
+                self.w = response_data.get('w')
+                self.h = response_data.get('h')
+                self.tn_w = response_data.get('tn_w')
+                self.tn_h = response_data.get('tn_h')
+                self.tim = response_data.get('tim')
+                self.time = response_data.get('time')
+                self.md5 = response_data.get('md5')
+                self.fsize = response_data.get('fsize')
+                self.resto = response_data.get('resto')
+                self.capcode = response_data.get('capcode')
+                self.semantic_url = response_data.get('semantic_url')
+                self.replies = response_data.get('replies')
+                self.images = response_data.get('images')
+                self.omitted_posts = response_data.get('omitted_posts')
+                self.omitted_images = response_data.get('omitted_images')
+                self.last_modified = response_data.get('last_modified')
+
+
         class FourChanClient(object):
 
             def __init__(self):
@@ -249,13 +279,20 @@ class FourChanThreadHandler(Resource):
         client = FourChanClient()
 
         r = client.get_catalog()
+        i = 1
+
         for p in r:
+
             for k1, v1 in p.items():
                 if k1 == 'threads':
                     for t in v1:
-                        data.append([t['tim'], t['ext']])
+                        # a = json.loads(json.dumps(t))
+                        # print(type(a))
+                        thread = Thread(t)
+                        data.append(json.loads(json.dumps(thread.__dict__)))
 
+        print(len(data))
         return {
             'resultStatus': 'SUCCESS',
-            'message': data[:10]
+            'message': data
         }
