@@ -1633,19 +1633,19 @@ div#absbot {
 	min-width: 50px
 }
 
-.meta {
-	cursor: help;
-	font-size: 11px;
-	line-height: 8px;
-	margin-top: 2px;
-	margin-bottom: 1px
-}
+/*.meta {*/
+/*	cursor: help;*/
+/*	font-size: 11px;*/
+/*	line-height: 8px;*/
+/*	margin-top: 2px;*/
+/*	margin-bottom: 1px*/
+/*}*/
 
-.meta .postMenuBtn {
-	position: absolute;
-	margin-top: -1px;
-	display: none
-}
+/*.meta .postMenuBtn {*/
+/*	position: absolute;*/
+/*	margin-top: -1px;*/
+/*	display: none*/
+/*}*/
 
 .thread:hover .meta .postMenuBtn {
 	display: inline-block

@@ -63,20 +63,32 @@ function FourChan(props) {
                     }
                     {
                         !loading
-                        && threads.map((thread, i) => (
+                        && threads.sort((a, b) => (a.replies < b.replies) ? 1 : -1).map((thread, i) => (
                                 <div id={`thread-${thread['no']}`} className="thread">
                                             <a href={`//boards.4chan.org/g/thread/${thread['no']}`}>
                                                 <img loading="lazy" alt=""
                                                    id={`thumb-${thread['no']}`}
-                                                   className="thumb" width="150px"
-                                                   height={`${(150/thread['tn_w'])*thread['tn_h']}`}
+                                                   className="thumb" width={thread['tn_w'] > thread['tn_h']? '150' : (150/thread['tn_h'])*thread['tn_w']}
+                                                   height={thread['tn_h'] > thread['tn_w']? '150' :(150/thread['tn_w'])*thread['tn_h']}
                                                    src={`//i.4cdn.org/g/${thread['tim']}s.jpg`}
                                                    data-id={`${thread['no']}`}/>
                                             </a>
                                             <div title="(R)eplies / (I)mage Replies" id={`meta-${thread['no']}`} className="meta">
-                                                <i>R: <b>301</b></i> / I: <b>48</b>/div>
+                                                <i>R: <b>{thread['replies']}</b></i> / I: <b>{thread['images']}</b>
                                             <div className="teaser">
-                                                <b>{thread['sum']}</b>:{thread['com']}
+                                                {thread['sub']  && <b>{thread['sub']
+                                                    .replaceAll('&gt;', '>')
+                                                    .replaceAll('<span class="quote">&gt;', '>')
+                                                    .replaceAll("&#039;", "'")}:</b>}
+
+                                                {thread['com'] && thread['com']
+                                                    .replaceAll('<span class="quote">&gt;', '>')
+                                                    .replaceAll("&#039;", "'")
+                                                    .replaceAll("</span><br>", "")
+                                                    .replaceAll("<br><br>", "")
+                                                    .replaceAll("<br>", "")
+                                                    .replaceAll("</span>", "")}
+
 
                                             </div>
                                         </div>
